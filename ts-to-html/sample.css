@@ -1,0 +1,28 @@
+body {
+  background-color: hsla(129, 46%, 73%, 0.349);
+}
+
+#extLink {
+  text-indent: 2em;
+  color: rgb(131, 48, 10);
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+ul li {
+  font-style: italic;
+}
+table {
+  border: 2px solid black;
+}
+table tr td {
+  border-top: 1px solid black;
+}
+
+table tr:nth-child(even) {
+  background: white;
+}
+
+table tr:nth-child(odd) {
+  background: yellow;
+}
