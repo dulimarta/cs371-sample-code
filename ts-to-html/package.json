@@ -10,9 +10,7 @@
     "build": "parcel build src/index.html"
   },
   "devDependencies": {
-    "@parcel/transformer-sass": "^2.2.1",
     "parcel": "^2.2.1",
-    "typescript": "^4.5.4",
-    "vercel": "^23.1.2"
+    "typescript": "^4.5.4"
   }
 }
