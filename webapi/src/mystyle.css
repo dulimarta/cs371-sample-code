@@ -1,0 +1,18 @@
+table {
+  border: 2px solid blue;
+}
+
+table tr:nth-child(odd) {
+  background-color: hsl(120, 80%, 30%);
+}
+table tr > td:last-child {
+  background-color: white;
+}
+
+table tr:nth-child(even) {
+  background-color: hsl(120, 80%, 70%);
+}
+
+table tr:first-child {
+  background-color: hsl(60, 0%, 80%);
+}
