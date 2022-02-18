@@ -16,3 +16,7 @@ table tr:nth-child(even) {
 table tr:first-child {
   background-color: hsl(60, 0%, 80%);
 }
+
+code {
+  font-size: 125%;
+}
