@@ -11,18 +11,18 @@ type ImageURL = {
   non-alphanumeric character */
 type Species = {
   "Image Gallery": Array<ImageURL>;
-  "Scientific Name": "";
-  "Species Aliases": "";
+  "Scientific Name": string;
+  "Species Aliases": string;
   "Species Illustration Photo": Array<ImageURL>;
-  "Species Name": "";
-  Calories: "";
-  Cholesterol: "";
-  Feeds: "";
-  "Fishing Rate": "";
-  Protein: "";
-  "Serving Weight": "";
-  Servings: "";
-  Sodium: "";
+  "Species Name": string;
+  Calories: string;
+  Cholesterol: string;
+  Feeds: string;
+  "Fishing Rate": string;
+  Protein: string;
+  "Serving Weight": string;
+  Servings: string;
+  Sodium: string;
 };
 
 axios
@@ -32,6 +32,7 @@ axios
     console.log("Some fish species");
     for (let k = 0; k < myFishArr.length; k++) {
       const aFish = myFishArr[k];
+      console.log(aFish["Fishing Rate"]);
       // Use "array subscript" syntax
       // when property name has non - alphanum chars
       console.log(aFish["Scientific Name"]);
