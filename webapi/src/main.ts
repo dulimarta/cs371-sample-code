@@ -63,3 +63,12 @@ function fetchNewData() {
 }
 
 fetchNewData();
+axios
+  .request({
+    method: "GET",
+    url: "https://hans-express-demo.herokuapp.com",
+  })
+  .then((r: AxiosResponse) => {
+    console.log(r.headers);
+    console.log("Response", r.data);
+  });
