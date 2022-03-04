@@ -32,32 +32,32 @@ const fiveK = waters.some((r: River): boolean => r.length > 5000);
 
 console.log("Any river longer than 500 miles?", fiveK);
 
-// Select rivers whose name has an "e"
+// #1. Select rivers whose name has an "e"
 const eRivers = waters
   .filter((r: River) => r.name.includes("e"))
   .map((r: River): string => r.name);
 console.log("Rivers with 'e'", eRivers);
 
-// The shortest river name (using sort)
+// #2a. The shortest river name (using sort)
 const riversSortedByName = waters.sort(
   (a: River, b: River): number => a.name.length - b.name.length
 );
 console.log(`Shortest river name is ${riversSortedByName[0].name}`);
 
-// The shortest river name (using reduce)
+// #2b. The shortest river name (using reduce)
 const shortestRiverName = waters.reduce((prev: River, curr: River): River => {
   if (prev.name.length < curr.name.length) return prev;
   else return curr;
 });
 console.log(`Shortest river name is ${shortestRiverName.name}`);
 
-// Find the longest river (using sort)
+// #3a. Find the longest river (using sort)
 const riversSortedByLength = waters.sort(
   (a: River, b: River): number => b.length - a.length
 );
 console.log("Longest river is ", riversSortedByLength[0]);
 
-// Find the longest river (using reduce)
+// #3b. Find the longest river (using reduce)
 const longestRiver = waters.reduce((prev: River, curr: River): River => {
   if (prev.length < curr.length) return curr;
   else return prev;
@@ -66,32 +66,33 @@ console.log(
   `Longest river is ${longestRiver.name} (${longestRiver.length} miles)`
 );
 
-// Rivers that go thru China
+// #4. Rivers that go thru China
 const thruChina = waters
   .filter((r: River): boolean => r.countries.includes("China"))
   .map((r: River) => r.name);
 console.log("Rivers passing China", thruChina);
 
-// Find the river that goes thru most countries (using sort)
+// #5a. Find the river that goes thru most countries (using sort)
 const riversSortedByCountry = waters.sort(
   (a: River, b: River) => b.countries.length - a.countries.length
 );
 console.log(riversSortedByCountry[0].name);
 
-// Find the river that goes thru most countries (using reduce)
+// #5b. Find the river that goes thru most countries (using reduce)
 const mostCountries = waters.reduce((prev: River, curr: River): River => {
   if (prev.countries.length > curr.countries.length) return prev;
   else return curr;
 });
 console.log(mostCountries.name);
 
+// To enable flatMap(), the "target" option in tsconfig.json must be set to ES2019
 // Country with the longest name (using flatMap and sort)
 const sortedRiverNames = waters
   .flatMap((r: River): Array<string> => r.countries)
   .sort((a: string, b: string) => b.length - a.length);
 console.log("Longest country name", sortedRiverNames[0]);
 
-// Country with the longest name (using flatMap and reduce)
+// #6. Country with the longest name (using flatMap and reduce)
 const longestRiverName = waters
   .flatMap((r: River): Array<string> => r.countries)
   .reduce((a: string, b: string) => {
@@ -99,3 +100,9 @@ const longestRiverName = waters
     else return a;
   });
 console.log("Longest country name", longestRiverName);
+
+// #7. Show country names which are passed by river longer than 3000 miles
+const countriesWithRiver3000 = waters
+  .filter((r: River) => r.length > 3000)
+  .flatMap((r: River) => r.countries);
+console.log(countriesWithRiver3000);

@@ -83,3 +83,5 @@ const anchorToPtable = document.createElement("a");
 anchorToPtable.innerText = "Periodic Table";
 anchorToPtable.setAttribute("href", "https://ptable.com/?lang=en");
 thirdPar.appendChild(anchorToPtable);
+const mdayah = document.createTextNode(" by Michael Dayah");
+thirdPar.append(mdayah);
