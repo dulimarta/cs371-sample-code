@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <h2>My First Vue App</h2>
-    <img alt="Vue logo" src="./assets/logo.png">
+    <h2>Vue App Samples</h2>
+    <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/> -->
     <Sample></Sample>
   </div>
@@ -10,7 +10,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 // import HelloWorld from "./components/HelloWorld.vue";
-import Sample from "./components/00-hello.vue";
+// import Sample from "./components/00-hello.vue";
 // import Sample from "./components/10-data-binding.vue";
 // import Sample from "./components/20-forloop.vue";
 // import Sample from "./components/22-forloop-objects.vue";
@@ -20,6 +20,7 @@ import Sample from "./components/00-hello.vue";
 // import Sample from "./components/50-event-handling.vue";
 // import Sample from "./components/55-event-mods.vue";
 // import Sample from "./components/60-props.vue";
+import Sample from "./components/70-world-time.vue";
 
 @Component({
   components: {

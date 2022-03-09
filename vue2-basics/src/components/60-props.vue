@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ChildComponent one="First test" :two="37" three>
+    <ChildComponent one="First test" :two="37">
     </ChildComponent>
     <ChildComponent one="Second test" three what="sometext">
     </ChildComponent>

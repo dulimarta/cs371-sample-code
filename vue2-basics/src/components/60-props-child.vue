@@ -5,6 +5,8 @@
       <li>Two is {{two ? two : "N/A"}}</li>
       <li>Three is {{three}}</li>
     </ul>
+
+    Attributes: {{$attrs}}
   </div>
 </template>
 
