@@ -123,7 +123,10 @@ export default class RandomAnimalComponent extends Vue {
         this.currentPage = r.page;
         this.maxPage = r.totalPages;
 
+        // Remove old data from the array
         this.quotes.splice(0);
+        // Save the JSON data from the Web API to quotes array
+        // so the UI will get updated accordingly
         this.quotes.push(...r.results);
       });
   }
