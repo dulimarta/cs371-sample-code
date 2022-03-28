@@ -1,16 +1,30 @@
 <template>
-  <div id="loginpanel">
-    <input type="text" v-model="u_email" placeholder="Enter your email">
-    <input type="password" v-model="u_pass"
-      placeholder="Enter your password">
-    <div id="withProvider">
-      <button :disabled="!isValidInput"
-        @click="createAccount">Signup</button>
-      <button :disabled="!isValidInput" @click="withEmail">Login</button>
-    </div>
-    <div>
-      <button @click="withGMail">Google</button>
-    </div>
+  <div>
+    <section>
+      <div id="loginpanel">
+        <input type="text" v-model="u_email"
+          placeholder="Enter your email">
+        <input type="password" v-model="u_pass"
+          placeholder="Enter your password">
+        <div id="loginByEmail">
+          <button :disabled="!isValidInput"
+            @click="createAccount">Signup</button>
+          <button :disabled="u_email.length === 0">Reset Password</button>
+          <button :disabled="!isValidInput"
+            @click="withEmail">Login</button>
+        </div>
+        <div>
+          <input id="verif" type="checkbox" v-model="emailVerification">
+          <label for="verif">Send verification email</label>
+        </div>
+        <div id="withProvider">
+          <button @click="withGMail">Google</button>
+          <button @click="withGitHub">GitHub</button>
+        </div>
+      </div>
+    </section>
+    <span id="msgbox" v-show="message.length > 0">{{message}}</span>
+
   </div>
 </template>
 
@@ -25,12 +39,18 @@ import {
   UserCredential,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  GithubAuthProvider,
+  sendEmailVerification,
+  signOut,
+  signInWithRedirect,
 } from "firebase/auth";
 @Component
 export default class LoginView extends Vue {
   u_email = "";
   u_pass = "";
+  message = "";
   auth: Auth | null = null;
+  emailVerification = false;
 
   get isValidInput(): boolean {
     return this.u_email.length > 0 && this.u_pass.length > 0;
@@ -40,13 +60,28 @@ export default class LoginView extends Vue {
     this.auth = getAuth();
   }
 
+  showMessage(txt: string) {
+    this.message = txt;
+
+    // The message will automatically disappear after 5 seconds
+    setTimeout(() => {
+      this.message = "";
+    }, 5000);
+  }
+
   createAccount(): void {
     createUserWithEmailAndPassword(this.auth!, this.u_email, this.u_pass)
-      .then((cr: UserCredential) => {
-        alert(`New account created with UID ${cr.user.uid}`);
+      .then(async (cr: UserCredential) => {
+        if (this.emailVerification) {
+          await sendEmailVerification(cr.user);
+          await signOut(this.auth!);
+          this.showMessage(
+            "An email verification has been sent to " + cr.user.email
+          );
+        } else this.showMessage(`New account created with UID ${cr.user.uid}`);
       })
       .catch((err: any) => {
-        alert(`Unable to create account ${err}`);
+        this.showMessage(`Unable to create account ${err}`);
       });
   }
 
@@ -56,44 +91,80 @@ export default class LoginView extends Vue {
         this.$router.push({ path: "/home" });
       })
       .catch((err: any) => {
-        alert(`Unable to login ${err}`);
+        this.showMessage(`Unable to login ${err}`);
       });
   }
 
   withGMail(): void {
     const provider = new GoogleAuthProvider();
-    signInWithPopup(this.auth!, provider).then((cred: UserCredential) => {
-      console.log("Yes, logged in");
+    signInWithPopup(this.auth!, provider)
+      .then((cred: UserCredential) => {
+        console.log("Yes, logged in");
 
-      // Move to the home page
-      this.$router.push({ path: "/home" });
+        // Move to the home page
+        this.$router.push({ path: "/home" });
+      })
+      .catch((err: any) => {
+        this.showMessage(`Unable to login with GMail ${err}`);
+      });
+  }
+
+  withGitHub(): void {
+    const provider = new GithubAuthProvider();
+    // provider.addScope("repo");
+    provider.setCustomParameters({
+      allow_signup: "false",
     });
+    signInWithRedirect(this.auth!, provider)
+      .then((cred: UserCredential) => {
+        console.log("Yes, logged in with GitHub");
+
+        // Move to the home page
+        this.$router.push({ path: "/home" });
+      })
+      .catch((err: any) => {
+        this.showMessage(`Unable to login with GitHub ${err}`);
+      });
   }
 }
 </script>
 <style scoped>
 #loginpanel {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
   border: 1px solid black;
   padding: 0.5em;
   border-radius: 0.5em;
 }
-#loginpanel {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: flex-end;
-}
 
-#withProvider {
+section {
   margin-bottom: 1em;
 }
+#msgbox {
+  font-size: 80%;
+  font-style: italic;
+  border-radius: 0.5em;
+  background-color: hsl(0, 0%, 75%);
+  padding: 0.5em;
+}
+#loginByEmail {
+  margin-top: 0.5em;
+}
+#withProvider {
+  margin-top: 1em;
+  align-self: center;
+}
+
 input {
   margin: 0.25em;
+  align-self: stretch;
 }
 
-input:last-of-type {
-  margin-bottom: 1em;
-}
 button {
   margin-right: 0.25em;
+}
+label {
+  font-size: 80%;
 }
 </style>
