@@ -87,8 +87,12 @@ export default class LoginView extends Vue {
 
   withEmail(): void {
     signInWithEmailAndPassword(this.auth!, this.u_email, this.u_pass)
-      .then((cr: UserCredential) => {
-        this.$router.push({ path: "/home" });
+      .then(async (cr: UserCredential) => {
+        if (cr.user.emailVerified) this.$router.push({ path: "/home" });
+        else {
+          this.showMessage("You must first verify your email");
+          await signOut(this.auth!);
+        }
       })
       .catch((err: any) => {
         this.showMessage(`Unable to login ${err}`);
