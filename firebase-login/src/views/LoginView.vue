@@ -9,7 +9,8 @@
         <div id="loginByEmail">
           <button :disabled="!isValidInput"
             @click="createAccount">Signup</button>
-          <button :disabled="u_email.length === 0">Reset Password</button>
+          <button :disabled="u_email.length === 0" @click="resetPass">Reset
+            Password</button>
           <button :disabled="!isValidInput"
             @click="withEmail">Login</button>
         </div>
@@ -39,11 +40,13 @@ import {
   UserCredential,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  GithubAuthProvider,
+   GithubAuthProvider,
   sendEmailVerification,
   signOut,
   signInWithRedirect,
+  sendPasswordResetEmail,
 } from "firebase/auth";
+
 @Component
 export default class LoginView extends Vue {
   u_email = "";
@@ -85,6 +88,17 @@ export default class LoginView extends Vue {
       });
   }
 
+  resetPass(): void {
+    sendPasswordResetEmail(this.auth!, this.u_email)
+      .then(() => {
+        this.showMessage(
+          `A password reset link has been sent to ${this.u_email}`
+        );
+      })
+      .catch((err: any) => {
+        this.showMessage("Unable to reset password ${err}");
+      });
+  }
   withEmail(): void {
     signInWithEmailAndPassword(this.auth!, this.u_email, this.u_pass)
       .then(async (cr: UserCredential) => {
@@ -116,10 +130,10 @@ export default class LoginView extends Vue {
   withGitHub(): void {
     const provider = new GithubAuthProvider();
     // provider.addScope("repo");
-    provider.setCustomParameters({
-      allow_signup: "false",
-    });
-    signInWithRedirect(this.auth!, provider)
+    // provider.setCustomParameters({
+    //   allow_signup: "false",
+    // });
+    signInWithPopup(this.auth!, provider)
       .then((cred: UserCredential) => {
         console.log("Yes, logged in with GitHub");
 
@@ -131,7 +145,7 @@ export default class LoginView extends Vue {
       });
   }
 }
-</script>
+</script> -->
 <style scoped>
 #loginpanel {
   display: inline-flex;

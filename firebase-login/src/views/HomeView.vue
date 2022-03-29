@@ -1,8 +1,9 @@
 <template>
   <div class="home">
     <h2>This is the main page</h2>
+    <p>{{userInfo}}</p>
+    <img :src="userPhotoURL" v-if="userPhotoURL.length > 0" width="64">
     <button @click="outtahere">Logout</button>
-    <img :src="userPhotoURL" width="64">
   </div>
 </template>
 
@@ -19,11 +20,15 @@ import {
 export default class HomeView extends Vue {
   userPhotoURL = "";
   auth: Auth | null = null;
+  userInfo = "";
   mounted(): void {
     this.auth = getAuth();
     onAuthStateChanged(this.auth, (user: User | null) => {
-      console.log(user?.photoURL);
-      this.userPhotoURL = user?.photoURL ?? "";
+      console.log("Auth changed", user);
+      if (user) {
+        this.userPhotoURL = user.photoURL ?? "";
+        this.userInfo = `${user.displayName}`;
+      }
     });
   }
 
