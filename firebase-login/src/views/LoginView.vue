@@ -40,7 +40,7 @@ import {
   UserCredential,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-   GithubAuthProvider,
+  GithubAuthProvider,
   sendEmailVerification,
   signOut,
   signInWithRedirect,
@@ -102,7 +102,8 @@ export default class LoginView extends Vue {
   withEmail(): void {
     signInWithEmailAndPassword(this.auth!, this.u_email, this.u_pass)
       .then(async (cr: UserCredential) => {
-        if (cr.user.emailVerified) this.$router.push({ path: "/home" });
+        if (cr.user.emailVerified)
+          this.$router.push({ name: "home", params: { byWayOf: "Email" } });
         else {
           this.showMessage("You must first verify your email");
           await signOut(this.auth!);
@@ -120,7 +121,7 @@ export default class LoginView extends Vue {
         console.log("Yes, logged in");
 
         // Move to the home page
-        this.$router.push({ path: "/home" });
+        this.$router.push({ name: "home", params: { byWayOf: "Google" } });
       })
       .catch((err: any) => {
         this.showMessage(`Unable to login with GMail ${err}`);
@@ -138,7 +139,7 @@ export default class LoginView extends Vue {
         console.log("Yes, logged in with GitHub");
 
         // Move to the home page
-        this.$router.push({ path: "/home" });
+        this.$router.push({ name: "home", params: { byWayOf: "GitHub" } });
       })
       .catch((err: any) => {
         this.showMessage(`Unable to login with GitHub ${err}`);
