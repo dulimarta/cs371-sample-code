@@ -7,7 +7,6 @@ import {
   Firestore,
   setDoc,
 } from "firebase/firestore";
-import { stringify } from "querystring";
 
 const states = [
   {
