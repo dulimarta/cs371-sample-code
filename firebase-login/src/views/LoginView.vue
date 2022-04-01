@@ -9,7 +9,8 @@
         <div id="loginByEmail">
           <button :disabled="!isValidInput"
             @click="createAccount">Signup</button>
-          <button :disabled="u_email.length === 0">Reset Password</button>
+          <button :disabled="u_email.length === 0" @click="resetPass">Reset
+            Password</button>
           <button :disabled="!isValidInput"
             @click="withEmail">Login</button>
         </div>
@@ -43,7 +44,9 @@ import {
   sendEmailVerification,
   signOut,
   signInWithRedirect,
+  sendPasswordResetEmail,
 } from "firebase/auth";
+
 @Component
 export default class LoginView extends Vue {
   u_email = "";
@@ -85,10 +88,22 @@ export default class LoginView extends Vue {
       });
   }
 
+  resetPass(): void {
+    sendPasswordResetEmail(this.auth!, this.u_email)
+      .then(() => {
+        this.showMessage(
+          `A password reset link has been sent to ${this.u_email}`
+        );
+      })
+      .catch((err: any) => {
+        this.showMessage("Unable to reset password ${err}");
+      });
+  }
   withEmail(): void {
     signInWithEmailAndPassword(this.auth!, this.u_email, this.u_pass)
       .then(async (cr: UserCredential) => {
-        if (cr.user.emailVerified) this.$router.push({ path: "/home" });
+        if (cr.user.emailVerified)
+          this.$router.push({ name: "home", params: { byWayOf: "Email" } });
         else {
           this.showMessage("You must first verify your email");
           await signOut(this.auth!);
@@ -106,7 +121,7 @@ export default class LoginView extends Vue {
         console.log("Yes, logged in");
 
         // Move to the home page
-        this.$router.push({ path: "/home" });
+        this.$router.push({ name: "home", params: { byWayOf: "Google" } });
       })
       .catch((err: any) => {
         this.showMessage(`Unable to login with GMail ${err}`);
@@ -116,22 +131,22 @@ export default class LoginView extends Vue {
   withGitHub(): void {
     const provider = new GithubAuthProvider();
     // provider.addScope("repo");
-    provider.setCustomParameters({
-      allow_signup: "false",
-    });
-    signInWithRedirect(this.auth!, provider)
+    // provider.setCustomParameters({
+    //   allow_signup: "false",
+    // });
+    signInWithPopup(this.auth!, provider)
       .then((cred: UserCredential) => {
         console.log("Yes, logged in with GitHub");
 
         // Move to the home page
-        this.$router.push({ path: "/home" });
+        this.$router.push({ name: "home", params: { byWayOf: "GitHub" } });
       })
       .catch((err: any) => {
         this.showMessage(`Unable to login with GitHub ${err}`);
       });
   }
 }
-</script>
+</script> -->
 <style scoped>
 #loginpanel {
   display: inline-flex;

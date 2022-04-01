@@ -1,13 +1,14 @@
 <template>
   <div class="home">
-    <h2>This is the main page</h2>
+    <h2>This is the main page. I got here via {{byWayOf}}</h2>
+    <p>{{userInfo}}</p>
+    <img :src="userPhotoURL" v-if="userPhotoURL.length > 0" width="64">
     <button @click="outtahere">Logout</button>
-    <img :src="userPhotoURL" width="64">
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from "vue-property-decorator";
 import {
   getAuth,
   onAuthStateChanged,
@@ -17,13 +18,19 @@ import {
 } from "firebase/auth";
 @Component
 export default class HomeView extends Vue {
+  @Prop() readonly byWayOf!: string;
+
   userPhotoURL = "";
   auth: Auth | null = null;
+  userInfo = "";
   mounted(): void {
     this.auth = getAuth();
     onAuthStateChanged(this.auth, (user: User | null) => {
-      console.log(user?.photoURL);
-      this.userPhotoURL = user?.photoURL ?? "";
+      console.log("Auth changed", user);
+      if (user) {
+        this.userPhotoURL = user.photoURL ?? "";
+        this.userInfo = `${user.displayName ?? "No Name"}`;
+      }
     });
   }
 
