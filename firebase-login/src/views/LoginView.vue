@@ -96,7 +96,7 @@ export default class LoginView extends Vue {
         );
       })
       .catch((err: any) => {
-        this.showMessage("Unable to reset password ${err}");
+        this.showMessage(`Unable to reset password ${err}`);
       });
   }
   withEmail(): void {

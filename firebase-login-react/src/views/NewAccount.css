@@ -1,0 +1,4 @@
+section {
+  display: inline-flex;
+  flex-direction: column;
+}
