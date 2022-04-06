@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 interface Atom {
   name: string;
   weight: number;
@@ -25,11 +25,11 @@ export default function Sample(): JSX.Element {
           </li>
         ))}
       </ul>
-      {elements.map((e: Atom) => (
-        <>
+      {elements.map((e: Atom, pos: number) => (
+        <React.Fragment key={pos}>
           <h2>Chemical element {e.name}</h2>
           <p>Atomic weight is {e.weight} AMUs</p>
-        </>
+        </React.Fragment>
       ))}
     </>
   );

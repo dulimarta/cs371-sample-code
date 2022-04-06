@@ -1,4 +1,11 @@
-section {
+#loginpanel {
   display: inline-flex;
   flex-direction: column;
+  border: 1px solid black;
+  padding: 0.5em;
+  border-radius: 0.5em;
+}
+
+section {
+  margin-bottom: 1em;
 }
