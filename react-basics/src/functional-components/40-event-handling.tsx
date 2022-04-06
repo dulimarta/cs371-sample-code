@@ -1,4 +1,6 @@
 import React, { createRef, MouseEvent } from "react";
+import "./40-event-handling.css"
+
 export default function Sample(): JSX.Element {
   const city = "Chicago";
   const box = createRef<HTMLDivElement>();
@@ -18,9 +20,9 @@ export default function Sample(): JSX.Element {
   }
   return (
     <>
-      <h2>Functional Event Handling</h2>
-      <button onClick={doOne}>Click Me</button>
-      <button onClick={doTwo}>Click Me</button>
+      <h2>Event Handling in Functional Components</h2>
+      <button onClick={doOne}>Click Left</button>
+      <button onClick={doTwo}>Click Right</button>
       <div
         ref={box}
         className="clearBox"

@@ -22,7 +22,7 @@ export default function Sample(): JSX.Element {
       <p>{color}</p>
       {/* We use  {{ and }} below because the inner curly braces
             are enclosing a CSS Rule object !*/}
-      <div id="box" style={{ backgroundColor: color }}></div>
+      <div id="box" style={   { backgroundColor: color }    }></div>
     </>
   );
 }

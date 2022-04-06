@@ -1,0 +1,13 @@
+div {
+  min-height: 4cm;
+}
+
+.clearBox {
+  border: 3px solid blue;
+
+}
+
+.coloredBox {
+  background-color: orange;
+
+}
