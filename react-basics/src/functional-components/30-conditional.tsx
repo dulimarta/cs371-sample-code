@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 export default function Sample(): JSX.Element {
   const [now] = useState(new Date());

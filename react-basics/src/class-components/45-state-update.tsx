@@ -1,8 +1,8 @@
 import { Component } from "react";
 import "../45-state-update.css";
-interface MyState {
+type MyState = {
   color: string;
-}
+};
 export default class Sample extends Component<any, MyState> {
   state = {
     color: "inherit",

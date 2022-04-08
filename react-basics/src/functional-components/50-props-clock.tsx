@@ -1,9 +1,10 @@
-interface MyProp {
-  hour: number;
+type MyProp = {
+  hour: number; // the first three are required props
   minute: number;
   label: string;
-  pm?: boolean;
-}
+  pm?: boolean; // optional prop
+};
+
 export default function Clock(props: MyProp): JSX.Element {
   return (
     <>

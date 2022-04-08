@@ -1,8 +1,8 @@
 import { Component } from "react";
 import Child from "./60-lifecycle-child";
-interface MyState {
+type MyState = {
   includeChild: boolean;
-}
+};
 export default class Sample extends Component<any, MyState> {
   state = {
     includeChild: true,

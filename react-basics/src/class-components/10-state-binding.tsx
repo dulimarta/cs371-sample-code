@@ -1,8 +1,8 @@
 import { Component } from "react";
-interface MyState {
+type MyState = {
   who: string;
   visitorNum: number;
-}
+};
 
 export default class Sample extends Component<any, MyState> {
   state = {

@@ -1,10 +1,10 @@
 import { Component } from "react";
-interface MyProp {
+type MyProp = {
   hour: number;
   minute: number;
   label: string;
   pm?: boolean;
-}
+};
 export default class Clock extends Component<MyProp, any> {
   render(): JSX.Element {
     return (

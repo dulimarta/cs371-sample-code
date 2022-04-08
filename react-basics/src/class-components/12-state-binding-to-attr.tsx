@@ -1,8 +1,8 @@
 import { Component, Fragment } from "react";
-interface MyState {
+type MyState = {
   imageURL: string;
   pageURL: string;
-}
+};
 
 export default class Sample extends Component<any, MyState> {
   state = {

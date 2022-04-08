@@ -1,7 +1,7 @@
 import { Component } from "react";
-interface MyState {
+type MyState = {
   count: number;
-}
+};
 export default class Sample extends Component<any, MyState> {
   private timer: any | null = null;
   state = {

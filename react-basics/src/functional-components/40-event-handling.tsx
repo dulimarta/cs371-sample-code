@@ -1,5 +1,5 @@
-import React, { createRef, MouseEvent } from "react";
-import "./40-event-handling.css"
+import { createRef, MouseEvent } from "react";
+import "./40-event-handling.css";
 
 export default function Sample(): JSX.Element {
   const city = "Chicago";
@@ -27,7 +27,8 @@ export default function Sample(): JSX.Element {
         ref={box}
         className="clearBox"
         onMouseEnter={mouseIn}
-        onMouseLeave={mouseOut}></div>
+        onMouseLeave={mouseOut}
+      ></div>
     </>
   );
 }

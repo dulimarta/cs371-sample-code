@@ -2,32 +2,34 @@ import { useEffect, useState } from "react";
 import "./60-effect.css";
 
 export default function Sample(): JSX.Element {
-  const [time1, setTime1] = useState("N/A");
-  const [time2, setTime2] = useState("N/A");
-  const [time3, setTime3] = useState("N/A");
+  const [firstRender, setFirstRenderTime] = useState("N/A");
+  const [renderTime, setTime2] = useState("N/A");
+  const [leftSliderUpdateTime, setLeftSliderTime] = useState("N/A");
+  const [lastLeftSliderTime, setLastLSTime] = useState("N/A");
   const [klaz, setKlaz] = useState("red");
-  const [slider1Val, setSlider1Val] = useState(5);
-  const [slider2Val, setSlider2Val] = useState(50);
+  const [leftSliderVal, setLeftSliderVal] = useState(5);
+  const [rightSliderVal, setRightSliderVal] = useState(50);
 
   useEffect(() => {
     // Called only on FIRST render
-    setTime1(new Date().toISOString());
+    setFirstRenderTime(new Date().toISOString().substring(11));
   }, []);
   useEffect(() => {
     // Called only on EVERY render
-    setTime2(new Date().toISOString());
+    setTime2(new Date().toISOString().substring(11));
     return () => {
       // console.debug("Undo every effect");
     };
   });
   useEffect(() => {
     // Called only when Slider 1 is updated
-    const now = new Date().toISOString();
-    setTime3(now);
+    const now = new Date().toISOString().substring(11);
+    setLeftSliderTime(now);
     return () => {
-      console.debug(`Slider was last updated ${now}`);
+      // console.debug(`Slider was last updated ${now}`);
+      setLastLSTime(now);
     };
-  }, [slider1Val]);
+  }, [leftSliderVal]);
 
   // const currentTime = new Date().toLocaleTimeString();
   return (
@@ -39,27 +41,43 @@ export default function Sample(): JSX.Element {
         type="range"
         min={3}
         max={10}
-        value={slider1Val}
+        value={leftSliderVal}
         onChange={(ev) => {
-          setSlider1Val(Number(ev.target.value));
+          setLeftSliderVal(Number(ev.target.value));
         }}
       ></input>
       <input
         type="range"
         min={20}
         max={80}
-        value={slider2Val}
+        value={rightSliderVal}
         onChange={(ev) => {
-          setSlider2Val(Number(ev.target.value));
+          setRightSliderVal(Number(ev.target.value));
         }}
       ></input>
       <ul>
-        <li>Left slider {slider1Val}</li>
-        <li>Right slider {slider2Val}</li>
-        <li>After First Render at {time1}</li>
-        <li>After every render at {time2}</li>
-        <li>After left slider update at {time3}</li>
+        <li>
+          Left slider {leftSliderVal}, Right slider {rightSliderVal}
+        </li>
       </ul>
+      <table>
+        <tr>
+          <td>First render</td>
+          <td>{firstRender}</td>
+        </tr>
+        <tr>
+          <td>Last left slider update</td>
+          <td>{lastLeftSliderTime}</td>
+        </tr>
+        <tr>
+          <td>Left slider update</td>
+          <td>{leftSliderUpdateTime}</td>
+        </tr>
+        <tr>
+          <td>After render</td>
+          <td>{renderTime}</td>
+        </tr>
+      </table>
     </>
   );
 }

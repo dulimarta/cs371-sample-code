@@ -1,11 +1,11 @@
 import { Component } from "react";
-interface Atom {
+type Atom = {
   name: string;
   weight: number;
-}
-interface MyState {
+};
+type MyState = {
   elements: Atom[];
-}
+};
 const chemData: Atom[] = [
   { name: "Argon", weight: 39.948 },
   { name: "Barium", weight: 137.33 },

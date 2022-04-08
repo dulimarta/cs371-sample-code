@@ -1,7 +1,7 @@
 import { Component } from "react";
-interface MyState {
+type MyState = {
   now: Date;
-}
+};
 export default class Sample extends Component<any, MyState> {
   state = {
     now: new Date(),
