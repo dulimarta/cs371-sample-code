@@ -17,3 +17,9 @@ where `XXXX` is one of the following
 * `enc` to get a urlencoded response
 * `img` to get a PNG image response
 * `json` to get a JSON response
+
+
+# WARNING
+
+When deploying to Heroku you must create a separate git repository ONLY for this project.
+Deploying from this cloned repo will fail to build.
