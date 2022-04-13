@@ -3,7 +3,6 @@
     <h2>Vue App Samples</h2>
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/> -->
-    wghere
     <div>
       <Sample></Sample>
     </div>
