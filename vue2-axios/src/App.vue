@@ -1,7 +1,8 @@
 <template>
   <div id="app">
-    <Users />
-    <Quotes />
+    <!-- <Users /> -->
+    <!-- <Quotes /> -->
+    <CorsDemo />
   </div>
 </template>
 
@@ -9,10 +10,11 @@
 import { Component, Vue } from "vue-property-decorator";
 import Users from "./components/RandomUsers.vue";
 import Quotes from "./components/RandomQuotes.vue";
+import CorsDemo from "./components/CorsDemo.vue"
 @Component({
   components: {
     Users,
-    Quotes,
+    Quotes, CorsDemo
   },
 })
 export default class App extends Vue {}
