@@ -6,6 +6,8 @@ const firstHeading = document.createElement("h1");
 firstHeading.innerText = "Hello";
 root?.appendChild(firstHeading);
 
+/**
+
 type Atom = {
   name: string;
   weight: number;
@@ -85,3 +87,4 @@ anchorToPtable.setAttribute("href", "https://ptable.com/?lang=en");
 thirdPar.appendChild(anchorToPtable);
 const mdayah = document.createTextNode(" by Michael Dayah");
 thirdPar.append(mdayah);
+****/
