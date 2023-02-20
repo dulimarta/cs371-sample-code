@@ -12,6 +12,7 @@ import {
   orderBy,
   limit,
 } from "firebase/firestore";
+import { stat } from "fs";
 
 function selectAllFromCollections(db: Firestore) {
   const stateColl = collection(db, "states");
@@ -19,14 +20,6 @@ function selectAllFromCollections(db: Firestore) {
     qs.forEach((qd: QueryDocumentSnapshot) => {
       console.log("From Firestore: ", qd.id, qd.data());
     });
-  });
-}
-
-function showDocDetails(db: Firestore) {
-  const cali = doc(db, "states/CA");
-  getDoc(cali).then((caliSnapshot: DocumentSnapshot) => {
-    if (caliSnapshot.exists()) console.log("Info on CA", caliSnapshot.data());
-    else console.error("Document not found");
   });
 }
 
@@ -39,14 +32,13 @@ function search(db: Firestore) {
   });
 
   const c = query(
-    collection(db, "states/MI/cities"),
-    where("lat", ">", 40),
-    where("lat", "<", 50)
+    collection(db, "states"),
+    where("population", ">", 20_000_000)
   );
   getDocs(c).then((qs: QuerySnapshot) => {
     console.log(`Query returns ${qs.size} records`);
     qs.forEach((z) => {
-      console.log(z.data());
+      console.log("Population above 20 millions", z.data());
     });
   });
 }
@@ -62,8 +54,7 @@ function sortAndLimit(db: Firestore) {
 }
 
 export function run(db: Firestore) {
-  // selectAllFromCollections(db);
-  // showDocDetails(db);
+  selectAllFromCollections(db);
   search(db);
   sortAndLimit(db);
 }
