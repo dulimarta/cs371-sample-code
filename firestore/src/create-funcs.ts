@@ -7,16 +7,27 @@ import {
   Firestore,
   setDoc,
 } from "firebase/firestore";
+import { StateType } from "./alltyeps";
 
-const states = [
+const states: StateType[] = [
   {
     abbrev: "AL",
-
     name: "Alabama",
     capital: "Montgomery",
+    population: 20_123_543,
   },
-  { abbrev: "AZ", name: "Arizona", capital: "Phoenix" },
-  { abbrev: "CA", name: "California", capital: "Sacramento" },
+  {
+    abbrev: "AZ",
+    name: "Arizona",
+    capital: "Phoenix",
+    population: 13_220_000
+  },
+  {
+    abbrev: "CA",
+    name: "California",
+    capital: "Sacramento",
+    population: 38_014_752,
+  },
 ];
 
 function addSingleDoc(db: Firestore) {
