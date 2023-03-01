@@ -17,6 +17,7 @@ import { stat } from "fs";
 function selectAllFromCollections(db: Firestore) {
   const stateColl = collection(db, "states");
   getDocs(stateColl).then((qs: QuerySnapshot) => {
+    console.log("Number of documents found", qs.size)
     qs.forEach((qd: QueryDocumentSnapshot) => {
       console.log("From Firestore: ", qd.id, qd.data());
     });
@@ -54,7 +55,7 @@ function sortAndLimit(db: Firestore) {
 }
 
 export function run(db: Firestore) {
-  selectAllFromCollections(db);
+  // selectAllFromCollections(db);
   search(db);
-  sortAndLimit(db);
+  // sortAndLimit(db);
 }

@@ -11,10 +11,10 @@ export async function run(db: Firestore) {
   await updateDoc(mich, {
     bird: "Blue Jay",
     population: 8_000_000,
-    governor: {
-      name: "Gretchen Whitmer",
-      age: 55,
-    },
+    // governor: {
+    //   name: "Gretchen Whitmer",
+    //   age: 55,
+    // },
     // capital: "City of Lansing",
   });
   await updateDoc(mich, { population: increment(517) });

@@ -3,14 +3,16 @@ import { createRouter, createWebHashHistory } from "vue-router";
 
 // import "./style.css";
 import App from "./App.vue";
-import PageOne from "./components/PageOne.vue";
-import PageTwo from "./components/PageTwo.vue";
-import PageThree from "./components/PageThree.vue";
+import Home from "./components/Home.vue";
+import Forecast from "./components/Forecast.vue";
+import Settings from "./components/Settings.vue";
+import Hourly from "./components/Hourly.vue";
 
 const routes = [
-  { path: "/", component: PageOne },
-  { path: "/two", component: PageTwo },
-  { path: "/three", component: PageThree },
+  { path: "/", component: Home },
+  { path: "/forecast", component: Forecast },
+  { path: "/settings", component: Settings },
+  { path: "/hourly", component: Hourly },
 ];
 
 const router = createRouter({ routes, history: createWebHashHistory() });

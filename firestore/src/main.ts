@@ -16,14 +16,17 @@ const app: FirebaseApp = initializeApp(firebaseConfig, "hans");
 console.log("Create Firebase App", app.name);
 const db: Firestore = getFirestore(app);
 
-createOp(db);
+// createOp(db);
 
-readOp(db);
-// updateOp(db);
+// readOp(db);
+
+updateOp(db);
 // deleteOp(db);
 // listen(db);
 
+/* Comment out the following three lines 
+ * when there is not write operations to Firestore
+ */
 waitForPendingWrites(db).then(async () => {
   await terminate(db);
 });
-// });
