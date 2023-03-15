@@ -7,9 +7,9 @@ const app = express();
 app.use(express.json()); // JSON payload
 app.use(express.urlencoded()); // x-www-form-urlencoded payload
 
-const form_mw = multer();
+const form_multi = multer();
 
-app.post("*", form_mw.none(), (req: Request, res: Response) => {
+app.post("*", form_multi.none(), (req: Request, res: Response) => {
   console.log(
     `Got a ${req.method} request with content type ${req.headers["content-type"]}`
   );

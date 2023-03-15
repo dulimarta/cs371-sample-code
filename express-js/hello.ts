@@ -3,6 +3,7 @@ import express, { Request, Response } from "express"
 const PORT = process.env.PORT ?? 9090
 const app = express()
 import path from "path"
+
 app.get("/", (req: Request, res: Response) => {
   res.send(
     "<h1>Simple ExpressJS Server</h1>"    
@@ -16,7 +17,9 @@ app.get("/api1", (req: Request, res: Response) => {
 })
 
 app.get("/api2", (req: Request, res: Response) => {
-  res.type("image/png").download("gvsu_logo.png")
+  // When this endpoint is invoked from a browser
+  // it should prompt a file save dialog
+  res.type("image/png").download("gvsu_logo.png");
 })
 
 app.get("/api3", (req: Request, res: Response) => {

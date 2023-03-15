@@ -57,8 +57,8 @@ function doAdd(
   }
 }
 
-app.get("/add", (req: Request, res: Response) => {
-  const param = req.query as MyQuery;
+app.get("/add", (req: Request<any, any, any, MyQuery>, res: Response) => {
+  const param = req.query;
   // console.log(req.query);
   if (param.first && param.second) {
     const first = Number(param.first);
@@ -72,15 +72,22 @@ app.get("/add", (req: Request, res: Response) => {
   }
 });
 
-app.get("/plus/:first/:second/:fmt", (req: Request, res: Response) => {
-  const { first, second, fmt } = req.params as MyQuery;
-  if (first && second) {
-    doAdd(Number(first), Number(second), fmt, res);
+app.get(
+  "/plus/:first/:second/:fmt",
+  (req: Request<any, any, any, MyQuery>, res: Response) => {
+    const { first, second, fmt } = req.params;
+    if (first && second) {
+      doAdd(Number(first), Number(second), fmt, res);
+    } else {
+      res
+        .type("text/html")
+        .status(404)
+        .send("<p>Missing 'first' or 'second'</p>");
+    }
   }
-  res.type("text/html").status(404).send("<p>Missing 'first' or 'second'</p>");
-});
+);
 
-app.get("/help", (req: Request, res: Response) => {
+app.get("/", (req: Request, res: Response) => {
   const helpText =
     "<h2>Web Service Demo</h2>" +
     "<p>Available endpoints</p><ul>" +
