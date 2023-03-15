@@ -1,0 +1,14 @@
+GET http://localhost:9090
+###
+GET http://localhost:9090/api1
+###
+GET http://localhost:9090/api2
+###
+GET http://localhost:9090/api3
+###
+GET http://localhost:9090/api4
+###
+GET http://localhost:9090/api5/West%20Michigan
+
+###
+GET http://localhost:9090/api6?uname=Allendale+West+Michigan&age=28

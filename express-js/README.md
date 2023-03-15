@@ -3,6 +3,9 @@
 ```bash
 npm install
 npx ts-node adder.ts
+# Or 
+# npx nodemon adder.ts
+# npx nodemon hello.ts
 ```
 
 # Connecting to the server

@@ -1,0 +1,39 @@
+GET https://localhost:9000/add?first=30&second=97&fmt=img HTTP/1.1
+
+###
+GET http://localhost:9000/plus/4/912/img
+###
+GET https://localhost:9000/help
+
+###
+POST http://localhost:9000/add HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+first=43&second=54&fmt=text
+
+###
+POST http://localhost:9000/add HTTP/1.1
+Content-Type: application/json
+
+{ 
+  "first": 43,
+  "second": 54, "fmt": "text"
+}
+
+###
+POST http://localhost:9000/add HTTP/1.1
+Content-Type: multipart/form-data; boundary=addnumbers
+
+--addnumbers
+Content-Disposition: form-data; name=first
+
+42
+--addnumbers
+Content-Disposition: form-data; name=second
+
+57
+--addnumbers
+Content-Disposition: form-data; name=fmt
+
+img
+--addnumbers--
