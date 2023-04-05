@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-interface Atom {
+type Atom = {
   name: string;
   weight: number;
 }
@@ -13,7 +13,7 @@ const chemData: Atom[] = [
 ];
 
 export default function Sample(): JSX.Element {
-  const [elements] = useState(chemData);
+  const [elements] = useState<Atom[]>(chemData);
 
   return (
     <>
