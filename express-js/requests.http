@@ -1,9 +1,9 @@
-GET https://localhost:9000/add?first=30&second=97&fmt=img HTTP/1.1
+GET http://localhost:9000/add?first=30&second=97&fmt=img HTTP/1.1
 
 ###
-GET http://localhost:9000/plus/4/912/img
+GET http://localhost:9000/plus/4/912/img HTTP/1.1
 ###
-GET https://localhost:9000/help
+GET http://localhost:9000/ HTTP/1.1
 
 ###
 POST http://localhost:9000/add HTTP/1.1
@@ -37,3 +37,6 @@ Content-Disposition: form-data; name=fmt
 
 img
 --addnumbers--
+
+### Experiment with Secure Server
+GET https://localhost:8443
