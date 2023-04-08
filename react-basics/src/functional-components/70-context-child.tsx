@@ -7,7 +7,9 @@ export function FirstChild(): JSX.Element {
   return (
     <>
       <div className="child">
-        <h2 style={{ color: gd.favoriteColor }}>First Child</h2>
+        <h2 style={{ color: "white", backgroundColor: gd.favoriteColor }}>
+          First Child
+        </h2>
         <div className="gc-container">
           <GCOne enableUpdate />
           <GCTwo />

@@ -1,5 +1,9 @@
 <template>
   <h1>Parsing HTTP Response</h1>
+
+  <p>News should be here</p>
+  <SpaceNews></SpaceNews>
+  <p>and here</p>
   <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime necessitatibus voluptates et reprehenderit consectetur autem ipsum optio, perspiciatis delectus ipsam vel eum tenetur error qui, animi at sunt aut voluptas!</p> -->
   <button @click="run1">Fetch plain text</button>
   <button @click="run2">Fetch HTML</button>
@@ -23,6 +27,7 @@ import {Ref, ref} from "vue"
 // import CorsDemo from "./components/CorsDemo.vue"
 // export default class App extends Vue {}
 import axios, { AxiosResponse } from "axios";
+import SpaceNews from "./components/SpaceNews.vue";
 
 type PrimePair = { prime: number, text:string}
 const textOut = ref("")
