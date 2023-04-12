@@ -1,10 +1,7 @@
-import react.FC
-import react.Props
-import react.create
+import react.*
 import react.dom.html.ReactHTML.li
 import react.dom.html.ReactHTML.p
 import react.dom.html.ReactHTML.ul
-import react.useState
 
 data class Atom(val name:String, val weight: Float)
 
@@ -23,9 +20,10 @@ val Sample20 = FC<Props> {
     }
 
     ul {
-        chemData.forEach {
+        chemData.forEachIndexed { index, atom ->
             li {
-                +"${it.name} (${it.weight} daltons---) "
+                key = index.toString()
+                +"${atom.name} (${atom.weight})"
             }
         }
     }
