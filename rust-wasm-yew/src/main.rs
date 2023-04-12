@@ -1,5 +1,5 @@
 mod components;
-use components::example50_component_props as component;
+use components::example40_click_event as component;
 
 fn main() {
     component::render();

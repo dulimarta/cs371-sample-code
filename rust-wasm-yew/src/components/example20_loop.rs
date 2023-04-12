@@ -1,7 +1,7 @@
 use yew::{function_component, html, Html};
 
 struct Atom {
-    pub name: Box<str>,
+    pub name: String,
     pub weight: f32,
 }
 
@@ -9,11 +9,11 @@ struct Atom {
 fn component() -> Html {
     let elements: Vec<Atom> = vec![
         Atom {
-            name: "Argon".into(),
+            name: "Argon".to_string(),
             weight: 39.948,
         },
         Atom {
-            name: "Barium".into(),
+            name: "Barium".to_string(),
             weight: 137.33,
         },
     ];

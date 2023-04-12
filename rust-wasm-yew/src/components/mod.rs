@@ -1,5 +1,5 @@
 pub mod example00;
-pub mod example10;
+pub mod example10_data_binding;
 pub mod example12_attr_binding;
 pub mod example20_loop;
 pub mod example40_click_event;

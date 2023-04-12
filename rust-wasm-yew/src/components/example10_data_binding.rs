@@ -6,12 +6,12 @@ fn component() -> Html {
     // let mut rng = rand::thread_rng();
     let mut buff: [u8; 4] = [0; 4];
     let _ = getrandom(&mut buff);
-    let num = u32::from_be_bytes(buff);
+    let num = use_state(|| u32::from_be_bytes(buff));
     let who = use_state(|| "Lakers");
     html! {
         <>
-        <h1>{"Hello "}{who.to_string()}</h1>
-        <p>{"Visitor number "}{num}</p>
+        <h1>{"Hello "}{*who}</h1>
+        <p>{"Visitor number "}{*num}</p>
         </>
     }
 }

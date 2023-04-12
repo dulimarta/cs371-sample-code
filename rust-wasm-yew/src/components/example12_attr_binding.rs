@@ -7,7 +7,7 @@ fn component() -> Html {
     html! {
         <>
         <h1>{"Hello Tiger"}</h1>
-        <img src={image_url.to_string()} />
+        <img src={*image_url} />
         <div>
         <a href="https://creativecommons.org/licenses/by/2.0/">{"CC BY"}</a>
       </div>

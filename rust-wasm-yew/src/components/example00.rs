@@ -1,4 +1,5 @@
 use yew::{function_component, html, Html};
+
 #[function_component(Component)]
 fn component() -> Html {
     html! {

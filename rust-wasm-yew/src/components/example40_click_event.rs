@@ -1,10 +1,9 @@
 use gloo::console::log;
-use stylist::yew::styled_component;
 use web_sys::HtmlButtonElement;
 use yew::prelude::*;
 use yew::{html, Callback, Html};
 
-#[styled_component(Component)]
+#[function_component(Component)]
 fn component() -> Html {
     let click_handler = Callback::from(move |event: MouseEvent| {
         let target = event.target_dyn_into::<HtmlButtonElement>().unwrap();
