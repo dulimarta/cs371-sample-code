@@ -1,5 +1,5 @@
 mod components;
-use components::example40_click_event as component;
+use components::example42_mouse_events as component;
 
 fn main() {
     component::render();

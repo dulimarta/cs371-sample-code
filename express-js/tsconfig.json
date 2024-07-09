@@ -3,5 +3,5 @@
     "esModuleInterop": true,
     "outDir": "dist"
   },
-  "files": ["adder.ts"]
+  "files": ["sample.ts"]
 }

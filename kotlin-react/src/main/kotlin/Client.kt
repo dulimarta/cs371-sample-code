@@ -9,6 +9,6 @@ fun main() {
 //    val welcome = Welcome.create {
 //        name = "Kotlin/JS"
 //    }
-    val sample = Sample50.create()
+    val sample = Sample40.create()
     createRoot(container).render(sample)
 }
