@@ -1,0 +1,36 @@
+{
+  "name": "firebase-firestore",
+  "private": true,
+  "type": "module",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "run-p type-check \"build-only {@}\" --",
+    "preview": "vite preview",
+    "build-only": "vite build",
+    "type-check": "vue-tsc --build --force"
+  },
+  "dependencies": {
+    "@fontsource/roboto": "5.2.7",
+    "@mdi/font": "7.4.47",
+    "firebase": "^12.5.0",
+    "pinia": "^3.0.4",
+    "vue": "^3.5.21",
+    "vuetify": "^3.10.1"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^10.1.0",
+    "@tsconfig/node22": "^22.0.0",
+    "@types/node": "^22.9.0",
+    "@vitejs/plugin-vue": "^6.0.1",
+    "@vue/tsconfig": "^0.8.1",
+    "npm-run-all2": "^8.0.4",
+    "sass-embedded": "^1.92.1",
+    "typescript": "~5.9.2",
+    "unplugin-fonts": "^1.4.0",
+    "unplugin-vue-components": "^29.0.0",
+    "vite": "^7.1.5",
+    "vite-plugin-vuetify": "^2.1.2",
+    "vue-tsc": "^3.0.7"
+  }
+}
