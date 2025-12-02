@@ -7,13 +7,12 @@
 </template>
 
 <script setup lang="ts">
-import { useUserStore } from './userstore';
-import {onMounted } from "vue"
-import HelloFirestore from './components/HelloFirestore.vue';
-
-const userStore = useUserStore()
+// import { useUserStore } from './userstore';
+import { onMounted } from "vue";
+import HelloFirestore from "./components/HelloFirestore.vue";
+import { useRandomNameFunctionalStyle } from "./random_name";
+const userStore = useRandomNameFunctionalStyle();
 onMounted(() => {
-  userStore.setupFirestore()
- })
-
+  userStore.observeFirestore();
+});
 </script>
